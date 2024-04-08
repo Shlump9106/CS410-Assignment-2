@@ -10,6 +10,7 @@ public class GameEnding : MonoBehaviour
     public AudioSource exitAudio;
     public CanvasGroup caughtBackgroundImageCanvasGroup;
     public AudioSource caughtAudio;
+    public ParticleSystem fire;
 
     bool m_IsPlayerAtExit;
     bool m_IsPlayerCaught;
@@ -26,6 +27,7 @@ public class GameEnding : MonoBehaviour
 
     public void CaughtPlayer ()
     {
+        fire.Play();
         m_IsPlayerCaught = true;
     }
 
@@ -36,7 +38,7 @@ public class GameEnding : MonoBehaviour
             EndLevel (exitBackgroundImageCanvasGroup, false, exitAudio);
         }
         else if (m_IsPlayerCaught)
-        {
+        {   
             EndLevel (caughtBackgroundImageCanvasGroup, true, caughtAudio);
         }
     }
