@@ -37,7 +37,13 @@ public class Observer : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
-                    gameEnding.CaughtPlayer ();
+                    WaypointPatrol pathFinder = transform.parent.gameObject.GetComponent<WaypointPatrol>();
+                    if(pathFinder == null){
+                        gameEnding.CaughtPlayer();
+                    }
+                    else {
+                        pathFinder.caughtPlayer = true;
+                    }
                 }
             }
         }

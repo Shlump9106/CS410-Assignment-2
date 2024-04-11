@@ -7,6 +7,8 @@ public class WaypointPatrol : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;
     public Transform[] waypoints;
+    public bool caughtPlayer = false;
+    public GameObject Player;
 
     int m_CurrentWaypointIndex;
 
@@ -17,7 +19,10 @@ public class WaypointPatrol : MonoBehaviour
 
     void Update ()
     {
-        if(navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
+        if (caughtPlayer) {
+            navMeshAgent.SetDestination(Vector3.Lerp(this.transform.position, Player.transform.position, .5f));
+        }
+        else if(navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
         {
             m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
             navMeshAgent.SetDestination (waypoints[m_CurrentWaypointIndex].position);
