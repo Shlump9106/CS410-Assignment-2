@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public InputAction MoveAction;
-    
+
     public float turnSpeed = 20f;
 
     Animator m_Animator;

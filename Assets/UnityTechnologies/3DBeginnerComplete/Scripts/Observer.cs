@@ -6,7 +6,6 @@ public class Observer : MonoBehaviour
 {
     public Transform player;
     public GameEnding gameEnding;
-
     bool m_IsPlayerInRange;
 
     void OnTriggerEnter (Collider other)
@@ -26,7 +25,7 @@ public class Observer : MonoBehaviour
     }
 
     void Update ()
-    {
+    {              
         if (m_IsPlayerInRange)
         {
             Vector3 direction = player.position - transform.position + Vector3.up;
@@ -37,6 +36,7 @@ public class Observer : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
+                    Debug.Log("hi");
                     WaypointPatrol pathFinder = transform.parent.gameObject.GetComponent<WaypointPatrol>();
                     if(pathFinder == null){
                         gameEnding.CaughtPlayer();
