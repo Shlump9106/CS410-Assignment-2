@@ -113,6 +113,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  mirror: {fileID: 0}
-  gameEnding: {fileID: 0}
   whispers: {fileID: 0}
