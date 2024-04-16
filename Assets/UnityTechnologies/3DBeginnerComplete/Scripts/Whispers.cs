@@ -7,10 +7,8 @@ public class Whispers : MonoBehaviour
     public Transform player;
     public AudioSource whispers; 
     bool mirrorLooking = false;
-    bool whispersPlaying = false;
     public ParticleSystem blood;
 
-    // Update is called once per frame
     void Update()
     {
         if(this.tag == "Mirror"){
@@ -40,38 +38,7 @@ public class Whispers : MonoBehaviour
 
                 
             }
-        } /*
-        if(mirrorLooking == true && whispersPlaying == false)
-        {
-            Debug.Log("play");
-            whispers.Play();
-            whispersPlaying = true;
         }
-        if(mirrorLooking == false)
-        {
-            Debug.Log("stop");
-            whispers.Stop();
-            whispersPlaying = false;
-        }*/
-        /*
-
-        
-        {
-            mirrorLooking = false; 
-        }
-        
-        }
-        if (mirrorLooking == false && whispersPlaying == true)
-        {
-            whispers.Stop();
-            whispersPlaying = false;
-            
-        }
-        if (mirrorLooking == true && whispersPlaying == false )
-        {
-            whispers.Play();
-            whispersPlaying = true;
-        }*/
         }
         
     }
