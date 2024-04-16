@@ -16,7 +16,8 @@ public class GhostObserver : MonoBehaviour
     public float detectionDelay = 5f;
     public float coneOfVisionAngle = 60f;
     public float coneOfVisionRadius = 10f;
-
+    public AudioSource ambientAudio;
+    public AudioSource ambientDetectedAudio;
     private float detectionTimer = 0f;
 
     public bool isGhostChasing = false;
@@ -103,6 +104,9 @@ public class GhostObserver : MonoBehaviour
         WaypointPatrol pathFinder = transform.parent.gameObject.GetComponent<WaypointPatrol>();
         if (isGhostChasing || areGhostsChasing)
         {
+            ambientAudio.Stop();
+            ambientDetectedAudio.Play();
+
             if (m_IsPlayerCatchable)
             {
                 gameEnding.CaughtPlayer();
@@ -115,6 +119,8 @@ public class GhostObserver : MonoBehaviour
         else
         {
             pathFinder.caughtPlayer = false;
+            ambientDetectedAudio.Stop();
+            ambientAudio.Play();
         }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public InputAction MoveAction;
-
+    
     public float turnSpeed = 20f;
 
     Animator m_Animator;
@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     AudioSource m_AudioSource;
     Vector3 m_Movement;
     Quaternion m_Rotation = Quaternion.identity;
+    public float sprint;
 
     void Start ()
     {
@@ -33,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
         
         m_Movement.Set(horizontal, 0f, vertical);
         m_Movement.Normalize ();
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            m_Movement = m_Movement * sprint;
+        }
 
         bool hasHorizontalInput = !Mathf.Approximately (horizontal, 0f);
         bool hasVerticalInput = !Mathf.Approximately (vertical, 0f);
