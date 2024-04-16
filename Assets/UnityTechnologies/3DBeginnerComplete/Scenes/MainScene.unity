@@ -21454,8 +21454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b0de39d295a6f2408adc90e5b96432e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  detectAudio: {fileID: 0}
+  player: {fileID: 2008973354732098957}
+  detectAudio: {fileID: 1773088416}
   detectionDelay: 3
   coneOfVisionAngle: 60
   coneOfVisionRadius: 5
