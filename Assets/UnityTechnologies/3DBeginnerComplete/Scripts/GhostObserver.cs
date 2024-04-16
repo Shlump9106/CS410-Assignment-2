@@ -12,7 +12,10 @@ public class GhostObserver : MonoBehaviour
 {
     public Transform player;
     public AudioSource detectAudio;
+    public AudioSource ambientAudio;
+    public AudioSource ambientDetectedAudio;
     public GameEnding gameEnding;
+
     public float detectionDelay = 5f;
     public float coneOfVisionAngle = 60f;
     public float coneOfVisionRadius = 10f;
@@ -21,6 +24,7 @@ public class GhostObserver : MonoBehaviour
 
     public bool isGhostChasing = false;
     public bool areGhostsChasing = false;
+    public bool areBennyHill = false;
 
     private bool m_IsPlayerSeen;
     private bool m_IsPlayerCatchable;
@@ -92,8 +96,11 @@ public class GhostObserver : MonoBehaviour
 
         if (detectionTimer >= detectionDelay && isGhostChasing == false)
         {
-            detectAudio.Play();
             isGhostChasing = true;
+            if (!areGhostsChasing)
+            {
+                detectAudio.Play();
+            }
         }
         if (detectionTimer <= 0 && isGhostChasing == true)
         {
@@ -103,6 +110,9 @@ public class GhostObserver : MonoBehaviour
         WaypointPatrol pathFinder = transform.parent.gameObject.GetComponent<WaypointPatrol>();
         if (isGhostChasing || areGhostsChasing)
         {
+            ambientAudio.Stop();
+            ambientDetectedAudio.Play();
+            areBennyHill = true;    
             if (m_IsPlayerCatchable)
             {
                 gameEnding.CaughtPlayer();
@@ -115,6 +125,9 @@ public class GhostObserver : MonoBehaviour
         else
         {
             pathFinder.caughtPlayer = false;
+            ambientDetectedAudio.Stop();
+            ambientAudio.Play();
+            areBennyHill = false;
         }
     }
 }

@@ -28,4 +28,12 @@ public class WaypointPatrol : MonoBehaviour
             navMeshAgent.SetDestination (waypoints[m_CurrentWaypointIndex].position);
         }
     }
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            AudioClip clip = GetComponents<AudioSource>()[1].clip;
+            AudioSource.PlayClipAtPoint(clip, Player.transform.position);
+        }
+    }
 }
