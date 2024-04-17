@@ -5285,6 +5285,134 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &170407098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 170407099}
+  - component: {fileID: 170407100}
+  m_Layer: 0
+  m_Name: BooLaugh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &170407099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170407098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1466929699}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &170407100
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170407098}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 47578ad1a201b3344ac10257284be1d3, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &173687171 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7748028635817376625, guid: 39d0626ce76d1884da050e0e509a5540,
@@ -5305,9 +5433,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2008973354732098957}
   detectAudio: {fileID: 1773088416}
-  detectionDelay: 3
+  detectionDelay: 0.5
+  loseDetectionDelay: -5
   coneOfVisionAngle: 60
   coneOfVisionRadius: 5
+  fire: {fileID: 493226607}
 --- !u!1 &177692766
 GameObject:
   m_ObjectHideFlags: 0
@@ -6179,6 +6309,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ghost (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075534488604402034, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5075534488604402034, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
@@ -11850,9 +11985,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2008973354732098957}
   detectAudio: {fileID: 1773088416}
-  detectionDelay: 3
+  detectionDelay: 0.5
+  loseDetectionDelay: -5
   coneOfVisionAngle: 60
   coneOfVisionRadius: 5
+  fire: {fileID: 493226607}
 --- !u!1 &989222513
 GameObject:
   m_ObjectHideFlags: 0
@@ -21562,9 +21699,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 2008973354732098957}
   detectAudio: {fileID: 1773088416}
-  detectionDelay: 3
+  detectionDelay: 0.5
+  loseDetectionDelay: -5
   coneOfVisionAngle: 60
   coneOfVisionRadius: 5
+  fire: {fileID: 493226607}
 --- !u!1001 &1226281125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21783,13 +21922,16 @@ MonoBehaviour:
   detectAudio: {fileID: 1773088416}
   ambientAudio: {fileID: 285650376}
   ambientDetectedAudio: {fileID: 1704319178}
+  booLaugh: {fileID: 170407100}
   gameEnding: {fileID: 5642716984738007026}
-  detectionDelay: 3
+  detectionDelay: 0.5
+  loseDetectionDelay: -5
   coneOfVisionAngle: 60
   coneOfVisionRadius: 5
   isGhostChasing: 0
   areGhostsChasing: 0
   areBennyHill: 0
+  isBooLaughing: 0
 --- !u!1001 &1407275730
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22056,6 +22198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075534488604402034, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075534488604402034, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
       propertyPath: m_TagString
       value: Ghost
       objectReference: {fileID: 0}
@@ -22275,6 +22422,7 @@ Transform:
   - {fileID: 1773088415}
   - {fileID: 206311977}
   - {fileID: 1413067896}
+  - {fileID: 170407099}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1527396175
@@ -22509,13 +22657,16 @@ MonoBehaviour:
   detectAudio: {fileID: 1773088416}
   ambientAudio: {fileID: 285650376}
   ambientDetectedAudio: {fileID: 1704319178}
+  booLaugh: {fileID: 170407100}
   gameEnding: {fileID: 5642716984738007026}
-  detectionDelay: 3
+  detectionDelay: 0.5
+  loseDetectionDelay: -5
   coneOfVisionAngle: 60
   coneOfVisionRadius: 5
   isGhostChasing: 0
   areGhostsChasing: 0
   areBennyHill: 0
+  isBooLaughing: 0
 --- !u!1 &1610058690 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 186551186563145508, guid: 549c69af39b84624b8a053537c407def,
@@ -23061,13 +23212,16 @@ MonoBehaviour:
   detectAudio: {fileID: 1773088416}
   ambientAudio: {fileID: 285650376}
   ambientDetectedAudio: {fileID: 1704319178}
+  booLaugh: {fileID: 170407100}
   gameEnding: {fileID: 5642716984738007026}
-  detectionDelay: 3
+  detectionDelay: 0.5
+  loseDetectionDelay: -5
   coneOfVisionAngle: 60
   coneOfVisionRadius: 5
   isGhostChasing: 0
   areGhostsChasing: 0
   areBennyHill: 0
+  isBooLaughing: 0
 --- !u!1 &1811816028
 GameObject:
   m_ObjectHideFlags: 0
@@ -23141,6 +23295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ghost (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075534488604402034, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5075534488604402034, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
@@ -28269,13 +28428,16 @@ MonoBehaviour:
   detectAudio: {fileID: 1773088416}
   ambientAudio: {fileID: 285650376}
   ambientDetectedAudio: {fileID: 1704319178}
+  booLaugh: {fileID: 170407100}
   gameEnding: {fileID: 5642716984738007026}
-  detectionDelay: 3
+  detectionDelay: 0.5
+  loseDetectionDelay: -5
   coneOfVisionAngle: 60
   coneOfVisionRadius: 5
   isGhostChasing: 0
   areGhostsChasing: 0
   areBennyHill: 0
+  isBooLaughing: 0
 --- !u!1 &2082689750 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 186551185991188437, guid: 549c69af39b84624b8a053537c407def,
@@ -29395,10 +29557,20 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 449659950}
+    - target: {fileID: 1217093007957287545, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2595510643693490728, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751484280772504296, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4257817316179491928, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
@@ -29647,9 +29819,19 @@ PrefabInstance:
       objectReference: {fileID: 1413067897}
     - target: {fileID: 5642716984738007026, guid: 3d8158841df6b824eb4a665f82a99938,
         type: 3}
+      propertyPath: fadeDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642716984738007026, guid: 3d8158841df6b824eb4a665f82a99938,
+        type: 3}
       propertyPath: faderCanvasGroup
       value: 
       objectReference: {fileID: 3195947575264462198}
+    - target: {fileID: 5642716984738007026, guid: 3d8158841df6b824eb4a665f82a99938,
+        type: 3}
+      propertyPath: displayImageDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5642716984738007026, guid: 3d8158841df6b824eb4a665f82a99938,
         type: 3}
       propertyPath: exitImageCanvasGroup

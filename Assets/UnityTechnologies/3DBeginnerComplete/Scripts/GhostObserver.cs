@@ -14,20 +14,31 @@ public class GhostObserver : MonoBehaviour
     public AudioSource detectAudio;
     public AudioSource ambientAudio;
     public AudioSource ambientDetectedAudio;
+    public AudioSource booLaugh;
     public GameEnding gameEnding;
 
-    public float detectionDelay = 5f;
+    public float detectionDelay = .5f;
+    public float loseDetectionDelay = -5f;
     public float coneOfVisionAngle = 60f;
     public float coneOfVisionRadius = 10f;
 
     private float detectionTimer = 0f;
+    private float loseDetectionTimer = 0f;
 
     public bool isGhostChasing = false;
     public bool areGhostsChasing = false;
     public bool areBennyHill = false;
+    public bool isBooLaughing = false;
 
-    private bool m_IsPlayerSeen;
-    private bool m_IsPlayerCatchable;
+    private bool m_IsPlayerSeen = false;
+    private bool m_IsPlayerCatchable = false;
+
+    private WaypointPatrol pathFinder;
+
+    void Start()
+    {
+        pathFinder = transform.parent.gameObject.GetComponent<WaypointPatrol>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -64,10 +75,12 @@ public class GhostObserver : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
+                    //Debug.Log("Player seen");
                     m_IsPlayerSeen = true;
                 }
                 else
                 {
+                    
                     m_IsPlayerSeen = false;
                 }
             }
@@ -85,49 +98,77 @@ public class GhostObserver : MonoBehaviour
 
         Seek(ghostForward, transform.position, player.position);
 
-        if (m_IsPlayerSeen && detectionTimer <= detectionDelay)
+        //Debug.Log("Detection timer: " + detectionTimer);
+        //Debug.Log(m_IsPlayerSeen);
+        if (m_IsPlayerSeen)
         {
-            detectionTimer += Time.deltaTime;
+            if (detectionTimer <= detectionDelay)
+            {
+                detectionTimer += Time.deltaTime;
+            }
+            if (loseDetectionTimer <= 0)
+            {
+                loseDetectionTimer += Time.deltaTime;
+            }
         }
-        if (!m_IsPlayerSeen && detectionTimer >= 0)
+        if (!m_IsPlayerSeen)
         {
-            detectionTimer -= Time.deltaTime;
+            if (detectionTimer >= 0)
+            {
+                detectionTimer -= Time.deltaTime;
+            }
+            if (loseDetectionTimer >= loseDetectionDelay)
+            {
+                loseDetectionTimer -= Time.deltaTime;
+            }
         }
 
         if (detectionTimer >= detectionDelay && isGhostChasing == false)
         {
+            //Debug.Log("isGhostChasing set");
             isGhostChasing = true;
             if (!areGhostsChasing)
             {
                 detectAudio.Play();
             }
         }
-        if (detectionTimer <= 0 && isGhostChasing == true)
+        if (loseDetectionTimer <= loseDetectionDelay && isGhostChasing == true)
         {
             isGhostChasing = false;
         }
 
-        WaypointPatrol pathFinder = transform.parent.gameObject.GetComponent<WaypointPatrol>();
         if (isGhostChasing || areGhostsChasing)
         {
-            ambientAudio.Stop();
-            ambientDetectedAudio.Play();
-            areBennyHill = true;    
+            if (!areBennyHill)
+            {
+                ambientAudio.Stop();
+                ambientDetectedAudio.Play();
+                areBennyHill = true;
+            }
             if (m_IsPlayerCatchable)
             {
+                if (!isBooLaughing)
+                {
+                    booLaugh.Play();
+                    isBooLaughing = true;
+                }
                 gameEnding.CaughtPlayer();
             }
             else
             {
+                //Debug.Log("pathfinding to player");
                 pathFinder.caughtPlayer = true;
             }
         }
         else
         {
             pathFinder.caughtPlayer = false;
-            ambientDetectedAudio.Stop();
-            ambientAudio.Play();
-            areBennyHill = false;
+            if (areBennyHill)
+            {
+                ambientDetectedAudio.Stop();
+                ambientAudio.Play();
+                areBennyHill = false;
+            }
         }
     }
 }

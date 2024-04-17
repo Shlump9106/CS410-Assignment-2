@@ -11,11 +11,15 @@ public class GargoyleObserver : MonoBehaviour
 
     public Transform player;
     public AudioSource detectAudio;
-    public float detectionDelay = 5f;
+    public float detectionDelay = .5f;
+    public float loseDetectionDelay = -5f;
     public float coneOfVisionAngle = 60f;
     public float coneOfVisionRadius = 10f;
 
+    public ParticleSystem fire;
+
     private float detectionTimer = 0f;
+    private float loseDetectionTimer = 0f;
 
     bool m_IsPlayerSeen;
     bool areGhostsChasing = false;
@@ -68,23 +72,39 @@ public class GargoyleObserver : MonoBehaviour
 
         Seek(gargoyleForward, transform.position, player.position);
 
-        if (m_IsPlayerSeen && detectionTimer <= detectionDelay)
+        if (m_IsPlayerSeen)
         {
-            detectionTimer += Time.deltaTime;
+            if (detectionTimer <= detectionDelay)
+            {
+                detectionTimer += Time.deltaTime;
+            }
+            if (loseDetectionTimer <= 0)
+            {
+                loseDetectionTimer += Time.deltaTime;
+            }
         }
-        if (!m_IsPlayerSeen && detectionTimer >= 0)
+        if (!m_IsPlayerSeen)
         {
-            detectionTimer -= Time.deltaTime;
+            if (detectionTimer >= 0)
+            {
+                detectionTimer -= Time.deltaTime;
+            }
+            if (loseDetectionTimer >= loseDetectionDelay)
+            {
+                loseDetectionTimer -= Time.deltaTime;
+            }
         }
 
         if (detectionTimer >= detectionDelay && areGhostsChasing == false)
         {
             detectAudio.Play();
+            fire.Play();
             areGhostsChasing = true;
             ModifyGhostChasing(true);
         }
-        if (detectionTimer <= 0 && areGhostsChasing == true)
+        if (loseDetectionTimer <= loseDetectionDelay && areGhostsChasing == true)
         {
+            fire.Stop();
             areGhostsChasing = false;
             ModifyGhostChasing(false);
         }

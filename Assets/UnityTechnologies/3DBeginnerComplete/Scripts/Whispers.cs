@@ -21,7 +21,7 @@ public class Whispers : MonoBehaviour
             {
                 float distance = Vector3.Distance (transform.position, player.transform.position);
                 float dot = Vector3.Dot(Vector3.Normalize(player.position-transform.position+Vector3.up), player.forward);
-                Debug.Log(dot);
+                //Debug.Log(dot);
                 if(distance < 3 && dot < -0.94 && mirrorLooking == false)
                 {
                     
