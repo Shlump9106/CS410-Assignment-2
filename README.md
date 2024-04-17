@@ -6,7 +6,7 @@ Used a dot product in conjunction with a ray to detect when the character model 
 
 # Ryan
 
-Created a "cone of vision" for all enemies, which detects the player. When the player remains within range and unobstructed for a variable amount of time, a soundclip is played and different enemy behaviors are activated. Ghosts begin chasing the player after detection, and all ghosts chase the player after detection from a gargoyle.
+Created a "cone of vision" for all enemies, which detects the player using a dot product. When the player remains within range and unobstructed for a variable amount of time, a soundclip is played and different enemy behaviors are activated. Ghosts begin chasing the player after detection, and all ghosts chase the player after detection from a gargoyle.
 
 # Clara
 
@@ -22,6 +22,7 @@ Setup git repository, created particle effect for fire on the player character w
 
 # Dot Product
 - Mirrors exist across the level that have particle effects and sounds emitted when looked at, which is calculated with a dot product.
+- Both enemy types use a dot product to detect when the player is within a certain angle and radius from the observer.
 
 # Sound Effect
 - Boo laugh from Mario plays when killed by ghost
